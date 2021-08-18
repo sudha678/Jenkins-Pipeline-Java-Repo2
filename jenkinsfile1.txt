@@ -4,8 +4,8 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building java source code..'
-		sh '''javac Jenkins.java
-		java Jenkins
+		sh '''javac jenkins.java
+		java jenkins
 		'''
 		 //echo 'Fail!'; exit 1
             }
