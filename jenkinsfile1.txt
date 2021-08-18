@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo 'Building java source code..'
+                echo 'Building java source code webhook..'
 		sh '''javac jenkins.java
 		java jenkins
 		'''
@@ -12,33 +12,33 @@ pipeline {
         }
         stage('Test') {
             steps {
-                echo 'Testing java source code'
+                echo 'Testing java source code webhook'
             }
         }
         stage('package') {
             steps {
-                echo 'Creating java package'
+                echo 'Creating java package webhook'
             }
         }
 	stage('deploy') {
 		steps {
-			echo 'Deploying java package....'
+			echo 'Deploying java package webhook....'
 		}
             }
         }
     
     post {
         always {
-            echo 'This code will always run'
+            echo 'This code will always run webhook'
         }
         success {
-            echo 'This code will only be executed on success'
+            echo 'This code will only be executed on success webhook'
         }
         failure {
-            echo 'This code will only be executed on failure'
+            echo 'This code will only be executed on failure webhook'
         }
         changed {
-            echo 'This code will only be executed on change.'
+            echo 'This code will only be executed on change webhook.'
         }
     }
 }
