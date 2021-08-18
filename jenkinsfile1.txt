@@ -1,9 +1,19 @@
 pipeline {
-    agent any
-    stages {
+      agent any
+stages {
+        stage('Input') {
+                  options {
+                          timeout(time: 1, unit: 'MINUTES')
+                        }
+                       steps {
+                              input ('Do you want to proceed?')
+                        }
+			
+	}
+ 
         stage('Build') {
             steps {
-                echo 'Building java source code webhook..'
+                echo 'Building java source code..'
 		sh '''javac jenkins.java
 		java jenkins
 		'''
@@ -12,33 +22,33 @@ pipeline {
         }
         stage('Test') {
             steps {
-                echo 'Testing java source code webhook'
+                echo 'Testing java source code'
             }
         }
         stage('package') {
             steps {
-                echo 'Creating java package webhook'
+                echo 'Creating java package'
             }
         }
 	stage('deploy') {
 		steps {
-			echo 'Deploying java package webhook....'
+			echo 'Deploying java package....'
 		}
             }
         }
     
     post {
         always {
-            echo 'This code will always run webhook'
+            echo 'This code will always run'
         }
         success {
-            echo 'This code will only be executed on success webhook'
+            echo 'This code will only be executed on success'
         }
         failure {
-            echo 'This code will only be executed on failure webhook'
+            echo 'This code will only be executed on failure'
         }
         changed {
-            echo 'This code will only be executed on change webhook.'
+            echo 'This code will only be executed on change.'
         }
     }
 }
